@@ -1,4 +1,4 @@
-package com.dev.anirban.dependencyinjection.ui.theme
+package com.dev.anirban.dependencyinjection.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

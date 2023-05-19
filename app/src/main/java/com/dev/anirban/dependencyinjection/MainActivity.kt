@@ -6,13 +6,22 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.dev.anirban.dependencyinjection.ui.theme.DependencyInjectionTheme
+import com.dev.anirban.dependencyinjection.components.CarComponent
+import com.dev.anirban.dependencyinjection.components.DaggerCarComponent
+import com.dev.anirban.dependencyinjection.core.ui.theme.DependencyInjectionTheme
+import com.dev.anirban.dependencyinjection.dependent.Car
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
+
+    // Component Object which gives the dependencies or injects them
+    private lateinit var carComponent: CarComponent
+
+    // Field Injection is done here
+    @Inject
+    lateinit var car: Car
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -22,22 +31,20 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+
+                    // defining the component variable
+                    carComponent = DaggerCarComponent.builder().build()
+
+                    // Injecting dependencies to all the fields
+                    carComponent.inject(this)
+
+                    // Getting the dependency from the function
+                    val car2 = carComponent.getCar()
+
+                    car.doDrive()
+                    car2.doDrive()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    DependencyInjectionTheme {
-        Greeting("Android")
     }
 }
