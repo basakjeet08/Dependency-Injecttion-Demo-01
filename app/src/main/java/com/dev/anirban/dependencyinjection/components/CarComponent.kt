@@ -2,6 +2,7 @@ package com.dev.anirban.dependencyinjection.components
 
 import com.dev.anirban.dependencyinjection.MainActivity
 import com.dev.anirban.dependencyinjection.dependent.Car
+import com.dev.anirban.dependencyinjection.modules.DieselEngineModule
 import dagger.Component
 
 /**
@@ -13,8 +14,10 @@ import dagger.Component
  *
  * @property getCar This function makes a Car class object and returns it to the caller
  * @property inject This function injects the marked dependencies o the Main Activity only
+ * @property DieselEngineModule This is the Module which state how to create the Engine class
+ * implementation of the Car class object
  */
-@Component
+@Component(modules = [DieselEngineModule::class])
 interface CarComponent {
 
     // This function makes a Car class object and returns it to the caller

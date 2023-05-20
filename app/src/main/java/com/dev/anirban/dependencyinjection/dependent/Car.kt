@@ -24,6 +24,7 @@ class Car @Inject constructor(
 
     // Drive method
     fun doDrive() {
+        engine.consume()
         d(tag, "Car is driving")
     }
 }

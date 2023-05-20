@@ -12,7 +12,6 @@ import com.dev.anirban.dependencyinjection.components.CarComponent
 import com.dev.anirban.dependencyinjection.components.DaggerAirplaneComponent
 import com.dev.anirban.dependencyinjection.components.DaggerCarComponent
 import com.dev.anirban.dependencyinjection.core.ui.theme.DependencyInjectionTheme
-import com.dev.anirban.dependencyinjection.dependent.Airplane
 import com.dev.anirban.dependencyinjection.dependent.Car
 import javax.inject.Inject
 
