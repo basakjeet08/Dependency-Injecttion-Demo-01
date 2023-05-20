@@ -38,13 +38,14 @@ class MainActivity : ComponentActivity() {
                 ) {
 
                     // defining the component variable
-                    carComponent = DaggerCarComponent.builder().build()
+                    carComponent = DaggerCarComponent
+                        .builder()
+                        .horsePower(390)
+                        .capacity(1500)
+                        .build()
 
                     // Injecting dependencies to all the fields
                     carComponent.inject(this)
-
-                    // Getting the dependency from the function
-                    val car2 = carComponent.getCar()
 
                     // Defining the airplane component
                     airplaneComponent = DaggerAirplaneComponent.builder().build()
@@ -52,10 +53,11 @@ class MainActivity : ComponentActivity() {
                     // Taking one Airplane object using the airplane component
                     val airplane = airplaneComponent.getAirplane()
 
+                    // Calling the Airplane Objects
                     airplane.doFly()
 
+                    // Calling the Car Objects
                     car.doDrive()
-                    car2.doDrive()
                 }
             }
         }
